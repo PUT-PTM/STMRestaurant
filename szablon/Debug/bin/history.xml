@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.8.4 -mcpu=cortex-m4 -mthumb -g2 -Map=szablon.map -O0 --gc-sections -LC:\Users\Karol\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\szablon -TC:\Users\Karol\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\szablon/arm-gcc-link.ld -g">
+      <target file="szablon.elf" lastModified="14d485046f1">
+         <source file="..\obj\5110.o" lastModified="14cbd8222ee"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="14cb8bae5ee"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="14cb8bae3fc"/>
+         <source file="..\obj\stm32f4xx_usart.o" lastModified="14cb8bae3c0"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14cb8bae512"/>
+         <source file="..\obj\stm32f4xx_exti.o" lastModified="14cb8bae6de"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="14cb8bae639"/>
+         <source file="..\obj\misc.o" lastModified="14cb8bae72e"/>
+         <source file="..\obj\stm32f4xx_adc.o" lastModified="14cb8bae58f"/>
+         <source file="..\obj\syscalls.o" lastModified="14cb8bae68e"/>
+         <source file="..\obj\stm32f4xx_tim.o" lastModified="14cb8bae805"/>
+         <source file="..\obj\stm32f4xx_syscfg.o" lastModified="14cb8bae2da"/>
+         <source file="..\obj\main.o" lastModified="14d485043ee"/>
+      </target>
+   </processor>
+</history>
