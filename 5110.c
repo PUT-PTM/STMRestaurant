@@ -205,19 +205,15 @@ void LCD5110_Write_Dec(unsigned int b) {
 	LCD5110_write_char(datas[3]);
 }
 
-/**
- * Set pin configuration. Doesn't use SPI controller. Just regular pins.
- *
- *	PF11 : Reset
- *	PF9  : CE
- *	PF7  : DC
- *	PF5  : MISO
- *	PF3  : CLK
- *	PF1  : LED control
- *
- * @param None
- * @retval None
- */
+
+//RST: PC11
+//CE:  PC9
+//DC:  PC7
+//DIN: PC5
+//CLK: PC3
+//LED: PC1 (lub GND)
+
+
 void LCD5110_GPIO_Config() {
 	GPIO_InitTypeDef GPIOC_Init;
 
