@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();       
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private string MyConString = "SERVER=mysql3.superhost.pl;" +
                 "DATABASE=sh188724_db;" +
                 "UID=sh188724_user;" +
@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
             if (serP.BytesToRead > 0)
             {
                 int msg = serP.ReadChar();
-                                   
+
                 if (msg < 100 && msg <= menu.Length - 1 && msg >= 0)
                     if (menu[msg] == "ACCEPT")
                     {
@@ -60,6 +60,7 @@ namespace WindowsFormsApplication1
                         {
                             insertToMySql();
                             getMySql();
+                            orders.Clear();
                         }
                         else
                         {
@@ -69,7 +70,7 @@ namespace WindowsFormsApplication1
                     else if (menu[msg] == "CANCEL")
                     {
                         orders.Clear();
-                    } 
+                    }
                     else
                         orders.Add(menu[msg]);
                 else if (msg >= 100 && msg - 100 <= menu.Length - 1 && msg - 100 >= 0)
@@ -77,17 +78,10 @@ namespace WindowsFormsApplication1
                     if (menu[msg - 100] == "ACCEPT") { ;}
                     else if (menu[msg - 100] == "CANCEL") { ;}
                     else
-                        orders.Remove(menu[msg]);                     
+                        orders.Remove(menu[msg - 100]);
                 }
                 else
                     textBox3.Text = "błąd - nie ma w bazie dania o takim indeksie";
-                    
-
-                if (menu[msg] != "ACCEPT")
-                {
-                    string sklejka = implodeOrders();
-                    textBox3.Text = sklejka;
-                }
             }
         }
         private string implodeOrders()
@@ -111,7 +105,7 @@ namespace WindowsFormsApplication1
 
                 command.CommandText = "select * from restaurant";
                 MySqlDataReader Reader = command.ExecuteReader();
-                
+
                 DataTable table = new DataTable();
                 table.Load(Reader);
                 dataGridView1.DataSource = table;
@@ -121,7 +115,7 @@ namespace WindowsFormsApplication1
                     DataRow row = table.Rows[0];
                     DataColumn column = table.Columns[0];
                 }
-                
+
                 connection.Close();
 
             }
@@ -148,7 +142,7 @@ namespace WindowsFormsApplication1
                 command.Parameters.AddWithValue("@orderList", implodeOrders());
                 command.Parameters.AddWithValue("@nrOfTable", 1);
                 command.ExecuteNonQuery();
-                connection.Close();                
+                connection.Close();
             }
             catch (MySqlException ex)
             {
@@ -178,7 +172,7 @@ namespace WindowsFormsApplication1
                 timer.Interval = 3;
                 timer.Start();
                 textBox3.Text = "Podłączenie do portu " + port + " przebiegło pomyślnie";
-            }                 
+            }
         }
 
         private void button2_Click_1(object sender, EventArgs e)

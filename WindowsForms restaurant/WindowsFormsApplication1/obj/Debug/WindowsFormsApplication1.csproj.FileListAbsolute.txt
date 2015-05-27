@@ -19,3 +19,13 @@ C:\Users\TomSon\OneDrive\moje ważne\PTM2\WindowsForms restaurant\WindowsFormsAp
 C:\Users\TomSon\OneDrive\moje ważne\PTM2\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\TomSon\OneDrive\moje ważne\PTM2\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\TomSon\OneDrive\moje ważne\PTM2\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Karol\Desktop\STMRestaurant\WindowsForms restaurant\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
