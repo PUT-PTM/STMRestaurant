@@ -151,7 +151,7 @@ void checkLeds() {
 		GPIO_ResetBits(GPIOD, GPIO_Pin_14);
 		GPIO_ResetBits(GPIOD, GPIO_Pin_12);
 	}
-	else if (check[counter] == 1){
+	else if (check[counter] > 0){
 		GPIO_ResetBits(GPIOD, GPIO_Pin_14);
 		GPIO_SetBits(GPIOD, GPIO_Pin_12);
 	}
@@ -211,7 +211,7 @@ int main(void) {
 		//OK
 		else if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_5) != 0){
 			if (counter != 7 && counter != 8){
-				check[counter] = 1;
+				check[counter]++;
 				GPIO_ResetBits(GPIOD, GPIO_Pin_14);
 				GPIO_SetBits(GPIOD, GPIO_Pin_12);
 			}
@@ -222,9 +222,11 @@ int main(void) {
 		//BACK
 		else if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) != 0){
 			if (counter != 7 && counter != 8){
-				check[counter] = 0;
-				GPIO_ResetBits(GPIOD, GPIO_Pin_12);
-				GPIO_SetBits(GPIOD, GPIO_Pin_14);
+				check[counter]--;
+				if (check[counter] == 0){
+					GPIO_ResetBits(GPIOD, GPIO_Pin_12);
+					GPIO_SetBits(GPIOD, GPIO_Pin_14);
+				}
 			}
 			USART_SendData(USART3, 100 + counter);
 			while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET) {}
