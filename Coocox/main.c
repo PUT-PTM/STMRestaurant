@@ -59,7 +59,7 @@ void setup_usart() {
 	// sprawdzanie parzystoœci (USART_Parity_No, USART_Parity_Even,	USART_Parity_Odd)
 	USART_InitStructure.USART_Parity = USART_Parity_No;
 	// sprzêtowa kontrola przep³ywu (USART_HardwareFlowControl_None, USART_HardwareFlowControl_RTS, USART_HardwareFlowControl_CTS, USART_HardwareFlowControl_RTS_CTS)
-	USART_InitStructure.USART_HardwareFlowControl =	USART_HardwareFlowControl_None;
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 	// tryb nadawania/odbierania (USART_Mode_Rx, USART_Mode_Rx )
 	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 	// konfiguracja
@@ -81,7 +81,7 @@ void setup_diody() {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
 	GPIO_InitTypeDef  Diody;
-	Diody.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15;
+	Diody.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
 	Diody.GPIO_Mode = GPIO_Mode_OUT;
 	Diody.GPIO_OType = GPIO_OType_PP;
 	Diody.GPIO_Speed = GPIO_Speed_100MHz;
@@ -91,32 +91,34 @@ void setup_diody() {
 
 //menu
 char screenRows[3][6][15] = {
-		{
-				"devolay z     ",
-				"szynka i serem",
-				"filet drobiowy",
-				"bukiet surowek",
-				"stek wolowy z ",
-				"talarkami ziem"
-		},
-		{
-				"shoarma z     ",
-				"kurczaka      ",
-				"losos na      ",
-				"szpinaku      ",
-				"salatka cezar ",
-				"z kurczakiem  "
-		},
-		{
-				"watrobka z    ",
-				"pieczarkami   ",
-				"______________",
-				">>ZATWIERDZ<<<",
-				"______________",
-				">>ANULUJ<<<<<<"
-		}
+	{
+		"devolay z     ",
+		"szynka i serem",
+		"filet drobiowy",
+		"bukiet surowek",
+		"stek wolowy z ",
+		"talarkami ziem"
+	},
+	{
+		"shoarma z     ",
+		"kurczaka      ",
+		"losos na      ",
+		"szpinaku      ",
+		"salatka cezar ",
+		"z kurczakiem  "
+	},
+	{
+		"watrobka z    ",
+		"pieczarkami   ",
+		"______________",
+		">>ZATWIERDZ<<<",
+		"______________",
+		">>ANULUJ<<<<<<"
+	}
 
 };
+int check[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
 //Current Menu Level
 int cml = 0;
 
@@ -125,34 +127,49 @@ int counter = 0;
 void screen(int row) {
 	LCD5110_clear();
 
-	if(row==0) LCD5110_write_string_inv(screenRows[cml][0]);
+	if (row == 0) LCD5110_write_string_inv(screenRows[cml][0]);
 	else LCD5110_write_string(screenRows[cml][0]);
 
-	if(row==0) LCD5110_write_string_inv(screenRows[cml][1]);
+	if (row == 0) LCD5110_write_string_inv(screenRows[cml][1]);
 	else LCD5110_write_string(screenRows[cml][1]);
 
-	if(row==1) LCD5110_write_string_inv(screenRows[cml][2]);
+	if (row == 1) LCD5110_write_string_inv(screenRows[cml][2]);
 	else LCD5110_write_string(screenRows[cml][2]);
 
-	if(row==1) LCD5110_write_string_inv(screenRows[cml][3]);
+	if (row == 1) LCD5110_write_string_inv(screenRows[cml][3]);
 	else LCD5110_write_string(screenRows[cml][3]);
 
-	if(row==2) LCD5110_write_string_inv(screenRows[cml][4]);
+	if (row == 2) LCD5110_write_string_inv(screenRows[cml][4]);
 	else LCD5110_write_string(screenRows[cml][4]);
 
-	if(row==2) LCD5110_write_string_inv(screenRows[cml][5]);
+	if (row == 2) LCD5110_write_string_inv(screenRows[cml][5]);
 	else LCD5110_write_string(screenRows[cml][5]);
+}
+
+void checkLeds() {
+	if (counter == 7 || counter == 8){
+		GPIO_ResetBits(GPIOD, GPIO_Pin_14);
+		GPIO_ResetBits(GPIOD, GPIO_Pin_12);
+	}
+	else if (check[counter] == 1){
+		GPIO_ResetBits(GPIOD, GPIO_Pin_14);
+		GPIO_SetBits(GPIOD, GPIO_Pin_12);
+	}
+	else {
+		GPIO_ResetBits(GPIOD, GPIO_Pin_12);
+		GPIO_SetBits(GPIOD, GPIO_Pin_14);
+	}
 }
 
 int main(void) {
 	if (SysTick_Config(SystemCoreClock / 1000))
-		while (1) ;
+		while (1);
 
 	setup_diody();
 	setup_usart();
 	setup_sterowanie();
 
-	int i=0;
+	int i = 0;
 	LCD5110_init();
 	LCD5110_set_XY(0, 0);
 	screen(i);
@@ -160,14 +177,14 @@ int main(void) {
 	int levels = sizeof(screenRows) / sizeof(screenRows[0]);
 	while (1) {
 		//DOWN
-		if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_7)!=0){
-			if(i+1==3) {
-				if(cml+1==levels) {
-					i=1;
+		if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_7) != 0){
+			if (i + 1 == 3) {
+				if (cml + 1 == levels) {
+					i = 1;
 					counter--;
 				}
 				else {
-					i=-1;
+					i = -1;
 					cml++;
 				}
 			}
@@ -176,14 +193,14 @@ int main(void) {
 			Delay(10);
 		}
 		//UP
-		else if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_6)!=0){
-			if(i-1==-1) {
-				if(cml-1<0) {
-					i=1;
+		else if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_6) != 0){
+			if (i - 1 == -1) {
+				if (cml - 1<0) {
+					i = 1;
 					counter++;
 				}
 				else {
-					i=3;
+					i = 3;
 					cml--;
 				}
 			}
@@ -192,19 +209,28 @@ int main(void) {
 			Delay(10);
 		}
 		//OK
-		else if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_5)!=0){
-			GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
+		else if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_5) != 0){
+			if (counter != 7 && counter != 8){
+				check[counter] = 1;
+				GPIO_ResetBits(GPIOD, GPIO_Pin_14);
+				GPIO_SetBits(GPIOD, GPIO_Pin_12);
+			}
 			USART_SendData(USART3, counter);
 			while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET) {}
 			Delay(40);
 		}
 		//BACK
-		else if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4)!=0){
-			GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-			USART_SendData(USART3, 100+counter);
+		else if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) != 0){
+			if (counter != 7 && counter != 8){
+				check[counter] = 0;
+				GPIO_ResetBits(GPIOD, GPIO_Pin_12);
+				GPIO_SetBits(GPIOD, GPIO_Pin_14);
+			}
+			USART_SendData(USART3, 100 + counter);
 			while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET) {}
 			Delay(40);
 		}
+		checkLeds();
 	}
 }
 void SysTick_Handler(void) {
