@@ -17,6 +17,9 @@ STMRestaurant is a project that can replace a waiter in a restaurant.
  * [CooCox CoIDE] 
  * [Visual Studio 2013]	
 
+### License
+The MIT License ([MIT])
+
 
 ### Contributors
 * TomSon234
@@ -26,3 +29,4 @@ STMRestaurant is a project that can replace a waiter in a restaurant.
 
 
 [Visual Studio 2013]:https://www.visualstudio.com
+[MIT]:http://opensource.org/licenses/MIT
