@@ -26,6 +26,10 @@ Buttons:
 * ok	PB05
 * back	PB04
 
+*all buttons connected also to the ground by resistors*
+
+*after pressing, on pin appears high state*
+
 LCD module:
 
 * RST	PC11
