@@ -15,9 +15,9 @@ namespace WindowsFormsApplication1
     {
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private string MyConString = "SERVER=mysql3.superhost.pl;" +
-                "DATABASE=sh188724_db;" +
-                "UID=sh188724_user;" +
-                "PASSWORD=dzkpbAZS";
+                "DATABASE=***********;" +
+                "UID=************;" +
+                "PASSWORD=********";
 
         System.IO.Ports.SerialPort serP;
         public Form1()
