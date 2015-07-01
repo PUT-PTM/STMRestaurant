@@ -43,6 +43,10 @@ LCD module:
 
  * [CooCox CoIDE] 
  * [Visual Studio 2013]	
+ 
+### Attributions
+
+* http://stm32f4-discovery.com/pcd8544-nokia-33105110-lcd-stm32f429-discovery-library/
 
 ### License
 The MIT License ([MIT])
@@ -68,3 +72,4 @@ Supervisor: [Michał Fularz]
 [Michał Fularz]:https://github.com/Michal-Fularz
 [Visual Studio 2013]:https://www.visualstudio.com
 [MIT]:http://opensource.org/licenses/MIT
+
